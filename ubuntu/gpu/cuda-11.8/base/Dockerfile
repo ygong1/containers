@@ -8,7 +8,7 @@ RUN cd /etc/apt/sources.list.d && \
 
 # See https://github.com/databricks/containers/blob/master/ubuntu/minimal/Dockerfile
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends \
+    apt-get install --yes \
       openjdk-8-jdk-headless \
       iproute2 \
       bash \
@@ -17,4 +17,5 @@ RUN apt-get update && \
       procps \
       wget && \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
